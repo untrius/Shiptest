@@ -242,7 +242,9 @@
 				trans_data = copy_data(T)
 			R.add_reagent(T.type, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1) //we only handle reaction after every reagent has been transfered.
 			if(method)
+				log_world("calling expose_single [T.name]")
 				R.expose_single(T, target_atom, method, part, show_message)
+				log_world("returning from expose_single")
 				T.on_transfer(target_atom, method, transfer_amount * multiplier)
 			remove_reagent(T.type, transfer_amount)
 			transfer_log[T.type] = transfer_amount
@@ -689,15 +691,25 @@
 
 /// Same as [/datum/reagents/proc/expose] but only for one reagent
 /datum/reagents/proc/expose_single(datum/reagent/R, atom/A, method = TOUCH, volume_modifier = 1, show_message = TRUE)
+	log_world("reagent: [R.name]")
+	log_world("atom: [A]")
+	log_world("method: [method]")
+	log_world("volume modifier [volume_modifier]")
+	log_world("show message: [show_message]")
+
 	if(isnull(A))
+		log_world("A is null")
 		return null
 
 	if(ispath(R))
+		log_world("R is a path")
 		R = get_reagent(R)
 	if(isnull(R))
+		log_world("R is null")
 		return null
 
 	// Yes, we need the parentheses.
+	log_world("calling (with return) expose_reagents")
 	return A.expose_reagents(list((R) = R.volume * volume_modifier), src, method, volume_modifier, show_message)
 
 /// Is this holder full or not
@@ -953,12 +965,19 @@ Needs matabolizing takes into consideration if the chemical is matabolizing when
 /datum/reagents/proc/generate_taste_message(minimum_percent=15)
 	var/list/out = list()
 	var/list/tastes = list() //descriptor = strength
+	log_world("generating taste message")
 	if(minimum_percent <= 100)
 		for(var/datum/reagent/R in reagent_list)
+			log_world("reagent: [R.name]")
+			log_world("taste desc: [R.taste_description]")
+			log_world("volume: [R.volume]")
+			log_world("taste mult: [R.taste_mult]")
+
 			if(!R.taste_mult)
 				continue
 
 			if(istype(R, /datum/reagent/consumable/nutriment))
+				log_world("is nutriment")
 				var/list/taste_data = R.data
 				for(var/taste in taste_data)
 					var/ratio = taste_data[taste]
@@ -968,6 +987,8 @@ Needs matabolizing takes into consideration if the chemical is matabolizing when
 					else
 						tastes[taste] = amount
 			else
+				log_world("is not nutriment")
+
 				var/taste_desc = R.taste_description
 				var/taste_amount = R.volume * R.taste_mult
 				if(taste_desc in tastes)
@@ -977,9 +998,13 @@ Needs matabolizing takes into consideration if the chemical is matabolizing when
 		//deal with percentages
 		// TODO it would be great if we could sort these from strong to weak
 		var/total_taste = counterlist_sum(tastes)
+		log_world("total_taste: [total_taste]")
 		if(total_taste > 0)
 			for(var/taste_desc in tastes)
+				log_world("[taste_desc]")
+				log_world("[tastes[taste_desc]]")
 				var/percent = tastes[taste_desc]/total_taste * 100
+				log_world("[percent]%")
 				if(percent < minimum_percent)
 					continue
 				var/intensity_desc = "a hint of"
@@ -992,6 +1017,7 @@ Needs matabolizing takes into consideration if the chemical is matabolizing when
 				else
 					out += "[taste_desc]"
 
+	log_world("output message: [english_list(out)]")
 	return english_list(out, "something indescribable")
 
 /// Applies heat to this holder

@@ -442,8 +442,11 @@
 	if((. = ..()) & COMPONENT_NO_EXPOSE_REAGENTS)
 		return
 
+	log_world("method: [method]")
 	if(method == INGEST)
+		log_world("calling taste")
 		taste(source)
+		log_world("returning from taste")
 
 	var/touch_protection = (method == VAPOR) ? get_permeability_protection() : 0
 	for(var/reagent in reagents)

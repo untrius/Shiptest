@@ -47,7 +47,10 @@
 
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
 	checkLiked(fraction, M)
+	log_world(reagents.log_list())
+	log_world("calling trans_to")
 	reagents.trans_to(M, gulp_size, transfered_by = user, method = INGEST)
+	log_world("returning from trans_to")
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), TRUE)
 	return TRUE
 

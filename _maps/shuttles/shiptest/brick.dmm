@@ -1,0 +1,30 @@
+"a" = (/turf/closed/wall/mineral/sandstone,/area/ship/bridge)
+"d" = (/obj/machinery/door/airlock/external,/obj/structure/fans/tiny,/turf/open/floor/plasteel,/area/ship/bridge)
+"h" = (/obj/machinery/power/shuttle/engine/electric{dir = 4},/obj/structure/cable{icon_state = "0-4"},/turf/open/floor/plasteel,/area/ship/bridge)
+"k" = (/turf/open/floor/plasteel,/area/ship/bridge)
+"p" = (/obj/machinery/power/smes/engineering,/obj/structure/cable/orange{icon_state = "0-5"},/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{dir = 4},/turf/open/floor/plasteel,/area/ship/bridge)
+"s" = (/obj/machinery/power/shuttle/engine/electric{dir = 4},/obj/structure/cable{icon_state = "0-4"},/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{dir = 4},/turf/open/floor/plasteel,/area/ship/bridge)
+"t" = (/obj/machinery/computer/helm{dir = 8},/turf/open/floor/plasteel,/area/ship/bridge)
+"u" = (/obj/machinery/power/terminal{dir = 8},/obj/structure/cable/yellow{icon_state = "0-2"},/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{dir = 8},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/ship/bridge)
+"A" = (/obj/machinery/airalarm/all_access{pixel_y = 24},/obj/item/stack/sheet/mineral/plasma/five,/turf/open/floor/plasteel,/area/ship/bridge)
+"B" = (/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{icon_state = "2-4"},/turf/closed/wall/mineral/sandstone,/area/ship/bridge)
+"C" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plasteel,/area/ship/bridge)
+"D" = (/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plasteel,/area/ship/bridge)
+"G" = (/obj/machinery/power/terminal{dir = 8},/obj/structure/cable/orange{icon_state = "0-10"},/obj/structure/cable/orange{icon_state = "0-4"},/turf/open/floor/plasteel,/area/ship/bridge)
+"K" = (/obj/structure/chair/comfy/shuttle,/turf/open/floor/plasteel,/area/ship/bridge)
+"L" = (/obj/structure/cable{icon_state = "1-8"},/turf/closed/wall/mineral/sandstone,/area/ship/bridge)
+"M" = (/obj/structure/cable{icon_state = "1-8"},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,/turf/closed/wall/mineral/sandstone,/area/ship/bridge)
+"O" = (/obj/machinery/power/smes/shuttle/precharged{dir = 4},/obj/structure/cable{icon_state = "0-8"},/turf/open/floor/plasteel,/area/ship/bridge)
+"P" = (/obj/structure/chair/comfy/shuttle{dir = 4},/obj/machinery/firealarm{dir = 4; pixel_x = -24},/turf/open/floor/plasteel,/area/ship/bridge)
+"R" = (/obj/machinery/door/airlock/external,/obj/structure/fans/tiny,/obj/docking_port/mobile{can_move_docking_ports = 1; dir = 2; dwidth = 30; height = 26; launch_status = 0; port_direction = 8; undock_roundstart = 1; width = 48},/turf/open/floor/plasteel,/area/ship/bridge)
+"T" = (/obj/structure/cable/orange{icon_state = "0-8"},/obj/machinery/power/terminal,/obj/machinery/power/apc/auto_name/south,/turf/open/floor/plasteel,/area/ship/bridge)
+"V" = (/obj/machinery/power/port_gen/pacman{anchored = 1},/obj/structure/cable/yellow{icon_state = "0-4"},/turf/open/floor/plasteel,/area/ship/bridge)
+"W" = (/obj/machinery/cryopod{dir = 1},/obj/machinery/computer/cryopod{pixel_y = -26},/turf/open/floor/plasteel,/area/ship/bridge)
+
+(1,1,1) = {"
+aaaRaaaa
+hBOGTkKC
+sMpuaPtC
+hLVDAkWC
+aaadaaaa
+"}

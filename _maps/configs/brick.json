@@ -1,0 +1,19 @@
+{
+	"map_name": "Brick-class Brick",
+	"map_short_name": "Brick-class",
+	"map_path": "_maps/shuttles/shiptest/brick.dmm",
+	"map_id": "brick",
+	"job_slots": {
+		"Chief Idiot": {
+			"outfit": "/datum/outfit/job/captain/solgov/rebel",
+			"officer": true,
+			"slots": 1
+		},
+		"Idiot": {
+			"outfit": "/datum/outfit/job/assistant/solgov/rebel",
+			"slots": 3
+
+		}
+	},
+	"cost": 300
+}

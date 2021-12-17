@@ -1,0 +1,18 @@
+{
+	"map_name": "Valentine-class Lovers' Cruiser",
+	"map_short_name": "Valentine-class",
+	"map_path": "_maps/shuttles/shiptest/valentine.dmm",
+	"map_id": "valentine",
+	"job_slots": {
+		"Chief Engineer": {
+			"outfit": "/datum/outfit/job/engineer/seniorengineer",
+			"officer": true,
+			"slots": 1
+		},
+		"Chief Medical Officer": {
+			"outfit": "/datum/outfit/job/bartender",
+			"slots": 1
+		}
+	},
+	"cost": 300
+}

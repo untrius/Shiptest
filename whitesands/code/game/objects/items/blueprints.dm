@@ -11,9 +11,7 @@
 	. = ..()
 	if(istype(target, /obj/machinery/computer/helm))
 		var/obj/machinery/computer/helm/H = target
-		if(istype(H.current_ship, /obj/structure/overmap/ship/simulated))
-			var/obj/structure/overmap/ship/simulated/S = H.current_ship
-			target_shuttle = S.shuttle
+		target_shuttle = H.current_ship.shuttle_port
 
 /obj/item/areaeditor/shuttle/attack_self(mob/user)
 	. = ..()
@@ -86,6 +84,7 @@
 					near_shuttle = TRUE
 	if(!near_shuttle)
 		to_chat(creator, "<span class='warning'>The new area must be next to the shuttle.</span>")
+		return
 	var/area_choice = input(creator, "Choose an area to expand or make a new area.", "Area Expansion") as null|anything in areas
 	area_choice = areas[area_choice]
 
@@ -184,3 +183,5 @@
 			height = new_width
 			dwidth = offset_y - 1
 			dheight = new_width - offset_x
+	qdel(assigned_transit, TRUE)
+	assigned_transit = null

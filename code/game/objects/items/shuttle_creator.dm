@@ -27,12 +27,9 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	var/recorded_shuttle_area
 	var/list/loggedTurfs = list()
 	var/loggedOldArea
-	var/obj/structure/overmap/ship/simulated/target_ship
 
 /obj/item/shuttle_creator/attack_self(mob/user)
 	..()
-	if(target_ship)
-		return
 	if(GLOB.custom_shuttle_count > CUSTOM_SHUTTLE_LIMIT)
 		return
 	return check_current_area(user)
@@ -47,8 +44,6 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	if(istype(target, /obj/machinery/door/airlock))
 		if(get_area(target) != loggedOldArea)
 			to_chat(user, "<span class='warning'>Caution, airlock must be on the shuttle to function as a dock.</span>")
-			return
-		if(target_ship)
 			return
 		if(GLOB.custom_shuttle_count > CUSTOM_SHUTTLE_LIMIT)
 			to_chat(user, "<span class='warning'>Shuttle limit reached, sorry.</span>")
@@ -156,7 +151,6 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 		to_chat(usr, "<span class='warning'>Shuttle creation aborted, docking airlock must be on an external wall. Please select a new airlock.</span>")
 		qdel(port, TRUE)
 		qdel(stationary_port, TRUE)
-		target_ship = null
 		return FALSE
 	port.dir = invertedDir
 	port.port_direction = portDirection
@@ -165,7 +159,6 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 		to_chat(usr, "<span class='warning'>Bluespace calculations failed, please select a new airlock.</span>")
 		qdel(port, TRUE)
 		qdel(stationary_port, TRUE)
-		target_ship = null
 		return FALSE
 
 	port.shuttle_areas = list()
@@ -184,7 +177,9 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 			curT.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 			port.shuttle_areas[cur_area] = TRUE
 
-	port.linkup(stationary_port)
+	var/datum/overmap/ship/controlled/new_custom_ship = new(SSovermap.get_overmap_object_by_location(port), SSmapping.shuttle_templates["custom_shuttle"], FALSE)
+	port.linkup(stationary_port, new_custom_ship)
+	new_custom_ship.connect_new_shuttle_port(port)
 
 	port.movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	port.initiate_docking(stationary_port)
@@ -193,7 +188,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	port.timer = 0
 
 	port.register()
-	GLOB.custom_shuttle_count ++
+	GLOB.custom_shuttle_count++
 	message_admins("[ADMIN_LOOKUPFLW(user)] created a new shuttle with a [src] at [ADMIN_VERBOSEJMP(user)] ([GLOB.custom_shuttle_count] custom shuttles, limit is [CUSTOM_SHUTTLE_LIMIT])")
 	log_game("[key_name(user)] created a new shuttle with a [src] at [AREACOORD(user)] ([GLOB.custom_shuttle_count] custom shuttles, limit is [CUSTOM_SHUTTLE_LIMIT])")
 	return TRUE
